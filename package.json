@@ -9,5 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pherchoo/api-gestion-expedientes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pherchoo/api-gestion-expedientes/issues"
+  },
+  "homepage": "https://github.com/Pherchoo/api-gestion-expedientes#readme"
 }

@@ -20,8 +20,12 @@ app.get('/', (req, res) => {
   res.json({ message: 'API de Gestión de Expedientes funcionando 🚀' });
 });
 
-const PORT = process.env.PORT || 5200;   // Usamos 5200 para diferenciar del primer proyecto
+const PORT = process.env.PORT || 5200;
 
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

@@ -14,7 +14,7 @@ const expedienteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tamaño: {
+  tamanio: {
     type: Number,
     required: true
   },

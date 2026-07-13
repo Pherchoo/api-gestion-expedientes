@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 const fileType = require('file-type');
 const Expediente = require('../models/Expediente');
 
@@ -27,7 +27,7 @@ const uploadExpediente = async (req, res) => {
       return res.status(400).json({ message: 'Solo se permiten archivos JPG, PNG o PDF' });
     }
 
-    const nombreGuardado = `${uuidv4()}.${fileTypeResult.ext}`;
+    const nombreGuardado = `${crypto.randomUUID()}.${fileTypeResult.ext}`;
     const uploadsDir = path.join(__dirname, '../../uploads');
     const uploadPath = path.join(uploadsDir, nombreGuardado);
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { verifyToken } = require('../middleware/auth');
 const {
   upload,
   uploadExpediente,
@@ -8,6 +9,9 @@ const {
   updateExpediente,
   deleteExpediente
 } = require('../controllers/expedienteController');
+
+// Todas las rutas requieren token
+router.use(verifyToken);
 
 // CREATE - Subir expediente
 router.post('/upload', upload.single('archivo'), uploadExpediente);

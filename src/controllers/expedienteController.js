@@ -12,6 +12,21 @@ const upload = multer({
   limits: { fileSize: 2 * 1024 * 1024 }
 });
 
+// Middleware que maneja errores de Multer
+const handleUpload = (req, res, next) => {
+  upload.single('archivo')(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      if (err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(400).json({ message: 'El archivo excede el tamano maximo de 2MB' });
+      }
+      return res.status(400).json({ message: 'Error al subir el archivo', error: err.message });
+    } else if (err) {
+      return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+    next();
+  });
+};
+
 // CREATE - Subir expediente
 const uploadExpediente = async (req, res) => {
   try {
@@ -181,6 +196,7 @@ const deleteExpediente = async (req, res) => {
 
 module.exports = {
   upload,
+  handleUpload,
   uploadExpediente,
   getAllExpedientes,
   getExpedienteById,
